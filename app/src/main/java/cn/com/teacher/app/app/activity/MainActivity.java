@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,10 +24,9 @@ import cn.com.teacher.app.app.fragment.MessageFrameng;
 import cn.com.teacher.app.app.fragment.StudyFragment;
 
 public class MainActivity extends FragmentActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener,View.OnClickListener{
+        implements NavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener, View.OnClickListener {
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
+
     @Bind(R.id.vp_main)
     ViewPager vpMain;
     @Bind(R.id.btnLearn)
@@ -39,28 +37,33 @@ public class MainActivity extends FragmentActivity
     Button btnMeaage;
     @Bind(R.id.btnLoca)
     Button btnLoca;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.nav_view)
+    NavigationView navView;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout drawer;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    ;
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        ButterKnife.bind(this);
+        navView.setNavigationItemSelectedListener(this);
+        toolbar.setNavigationIcon(R.drawable.my);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -86,7 +89,6 @@ public class MainActivity extends FragmentActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,7 +112,7 @@ public class MainActivity extends FragmentActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -127,12 +129,13 @@ public class MainActivity extends FragmentActivity
 //          ViewPager设置监听
         vpMain.setOnPageChangeListener(this);
         //首次进入时的页面
-        btnFand.setSelected(true);
+        btnFand.setSelected(true);//按键设置
+        vpMain.setCurrentItem(1, false);//ViewPager设置
+
     }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
     }
 
     @Override
@@ -141,6 +144,7 @@ public class MainActivity extends FragmentActivity
         btnFand.setSelected(position == 1);
         btnMeaage.setSelected(position == 2);
         btnLoca.setSelected(position == 3);
+
     }
 
     @Override
@@ -153,29 +157,34 @@ public class MainActivity extends FragmentActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnLearn:
-                vpMain.setCurrentItem(0,false);
+                vpMain.setCurrentItem(0, false);
                 break;
             case R.id.btnFand:
-                vpMain.setCurrentItem(1,false);
+                vpMain.setCurrentItem(1, false);
                 break;
             case R.id.btnMeaage:
-                vpMain.setCurrentItem(2,false);
+                vpMain.setCurrentItem(2, false);
                 break;
             case R.id.btnLoca:
-                vpMain.setCurrentItem(3,false);
+                vpMain.setCurrentItem(3, false);
                 break;
             default:
                 throw new RuntimeException("未知错误！");
         }
     }
-    private final FragmentPagerAdapter adapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
+
+    private final FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
         @Override
         public Fragment getItem(int position) {
-            switch (position){
-                case 0:return new StudyFragment();
-                case  1:return new FandFragment();
-                case 2:return new MessageFrameng();
-                case 3:return new LocaFragment();
+            switch (position) {
+                case 0:
+                    return new StudyFragment();
+                case 1:
+                    return new FandFragment();
+                case 2:
+                    return new MessageFrameng();
+                case 3:
+                    return new LocaFragment();
                 default:
                     throw new RuntimeException("未知故障！");
             }
