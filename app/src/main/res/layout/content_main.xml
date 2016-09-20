@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="cn.com.teacher.app.app.activity.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/theme"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnLearn"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/selector_learn"
+            android:padding="@dimen/lay_4"
+            android:text="@string/learn"
+            android:textColor="@color/color_selector_accent"
+            android:textSize="@dimen/font_10" />
+
+
+        <Button
+            android:id="@+id/btnFand"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/selector_fand_video"
+            android:padding="@dimen/lay_4"
+            android:text="@string/fand"
+            android:textColor="@color/color_selector_accent"
+            android:textSize="@dimen/font_10" />
+
+
+        <Button
+            android:id="@+id/btnMeaage"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/selector_message_account"
+            android:padding="@dimen/lay_4"
+            android:text="@string/message"
+            android:textColor="@color/color_selector_accent"
+            android:textSize="@dimen/font_10" />
+
+        <Button
+            android:id="@+id/btnLoca"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableTop="@drawable/selector_loca_account"
+            android:padding="@dimen/lay_4"
+            android:text="@string/loca"
+            android:textColor="@color/color_selector_accent"
+            android:textSize="@dimen/font_10" />
+    </LinearLayout>
+
+
+</RelativeLayout>

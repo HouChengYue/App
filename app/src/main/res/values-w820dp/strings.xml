@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username">未登录</string>
+    <string name="Emeil"><![CDATA[<user>@<exaple>.com]]></string>
+    <string name="learn">学习</string>
+    <string name="fand">发现</string>
+    <string name="message">消息</string>
+    <string name="loca">本地</string>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">app</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">软件设置</string>
+    <string name="username">未登录</string>
+    <string name="Emeil"><![CDATA[<user>@<exaple>.com]]></string>
+    <string name="learn">学习</string>
+    <string name="fand">发现</string>
+    <string name="message">消息</string>
+    <string name="loca">本地</string>
+</resources>
